@@ -2,7 +2,6 @@ import { Box, Grid, Switch, Typography } from "@mui/material";
 import MediaList from "../utils/media-list";
 import { GreenSwitch } from "../utils/green-switch";
 import { useState } from "react";
-import useSWR from "swr";
 
 export default function TrendingMovieBar(props) {
   const [isWeekly, setweekly] = useState(false);
@@ -18,10 +17,10 @@ export default function TrendingMovieBar(props) {
         <Grid container alignItems="center" spacing={1}>
           <Grid item xs={10}>
             <Typography variant="h2" sx={{ padding: "1rem" }}>
-              Trending Movies
+              {data.sectionTitle}
             </Typography>{" "}
           </Grid>
-          <Grid component="label">
+          <Grid component="label" sx={{ ml: "2rem" }}>
             <Grid item sx={{ mt: 2 }}>
               <Typography variant="h5">
                 Day
@@ -42,7 +41,9 @@ export default function TrendingMovieBar(props) {
 
       <MediaList
         medias={
-          isWeekly ? data.prefetchedWeekMovieData : data.prefetchedDayMovieData
+          isWeekly
+            ? data.prefetchedTrendingWeekMovieData
+            : data.prefetchedTrendingDayMovieData
         }
       />
     </>

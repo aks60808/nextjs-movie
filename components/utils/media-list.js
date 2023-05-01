@@ -7,6 +7,7 @@ import {
 import StarsIcon from "@mui/icons-material/Stars";
 import Image from "next/image";
 import Link from "next/link";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function MediaList(props) {
   const { medias } = props;
@@ -42,16 +43,30 @@ export default function MediaList(props) {
             <ImageListItemBar
               style={{ color: "#c5c6c7" }}
               title={
-                <Typography
-                  variant="h5"
-                  style={{
-                    display: "block",
-                    whiteSpace: "pre-line",
-                  }}
-                  textAlign="center"
-                >
-                  {media.title || media.name}
-                </Typography>
+                <>
+                  {" "}
+                  <Typography
+                    variant="h5"
+                    style={{
+                      display: "block",
+                      whiteSpace: "pre-line",
+                    }}
+                    textAlign="center"
+                  >
+                    {media.title || media.name}
+                  </Typography>
+                  <Typography
+                    variant="h7"
+                    style={{
+                      display: "block",
+                      whiteSpace: "pre-line",
+                      fontStyle: "italic",
+                    }}
+                    textAlign="center"
+                  >
+                    {media.release_date}
+                  </Typography>
+                </>
               }
               position="below"
             />

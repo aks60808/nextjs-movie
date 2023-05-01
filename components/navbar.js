@@ -51,24 +51,9 @@ function NavBar() {
           <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
             <Image src="/popcorn.png" alt="icon" width={22} height={22} />
           </Box>
-
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+          <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
+            <Image src="/weblogo.png" alt="icon" width={150} height={90} />
+          </Box>
 
           <Box
             sx={{
@@ -102,7 +87,7 @@ function NavBar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
-                "& .MuiMenu-paper": { backgroundColor: "#0b0c10" },
+                "& .MuiMenu-paper": { backgroundColor: "#1F2833" },
               }}
             >
               {pages.map((page) => (
@@ -119,28 +104,17 @@ function NavBar() {
           <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
             <Image src="/popcorn.png" alt="icon" width={22} height={22} />
           </Box>
+          <Box sx={{ display: { xs: "flex", md: "none" }, flexGrow: 1, mr: 1 }}>
+            <Image src="/weblogo.png" alt="icon" width={150} height={90} />
+          </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Link key={page.name} href={page.route}>
+              <Link
+                key={page.name}
+                href={page.route}
+                style={{ textDecoration: "none" }}
+              >
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "#66fcf1", display: "block" }}
