@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "next/link";
 import Image from "next/image";
+
 const pages = [
   { name: "Trending", route: "trending" },
   { name: "Test1", route: "/" },
@@ -69,7 +70,12 @@ function NavBar() {
             LOGO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -96,12 +102,15 @@ function NavBar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
+                "& .MuiMenu-paper": { backgroundColor: "#0b0c10" },
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Link href={page.route}>
-                    <Typography textAlign="center">{page.name}</Typography>
+                  <Link href={page.route} style={{ textDecoration: "none" }}>
+                    <Typography textAlign="center" color="#66fcf1">
+                      {page.name}
+                    </Typography>
                   </Link>
                 </MenuItem>
               ))}
@@ -134,7 +143,7 @@ function NavBar() {
               <Link key={page.name} href={page.route}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, color: "#66fcf1", display: "block" }}
                 >
                   {page.name}
                 </Button>
