@@ -16,7 +16,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SearchMovieField from "./search-movie-field";
 const pages = [
-  { name: "Trending", route: "trending" },
+  { name: "Trending", route: "/trending" },
   { name: "Test1", route: "/" },
   { name: "Test2", route: "/" },
 ];

@@ -9,7 +9,7 @@ import { Box } from "@mui/joy";
 import BrokenImageIcon from "@mui/icons-material/BrokenImage";
 export default function MoiveSearchList(props) {
   const { movies } = props;
-  console.log(movies);
+
   return (
     <ImageList
       sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}

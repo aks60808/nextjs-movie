@@ -48,9 +48,7 @@ export default function SearchMovieField() {
   const router = useRouter();
 
   function searchHandler(event) {
-    // event.preventDefault();
-    // console.log();
-
+    console.log(`capture keydown ${event.target.value}`);
     if (event.keyCode == 13) {
       const fullPath = `/search/${event.target.value}`;
       router.push(fullPath);

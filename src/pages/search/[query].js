@@ -23,7 +23,6 @@ export default function SearchPage() {
   if (!movieList) {
     return (
       <>
-        <Typography variant="h1">Searching</Typography>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CircularProgress
             size={100}
@@ -33,6 +32,7 @@ export default function SearchPage() {
       </>
     );
   }
+  // console.log(setMovielist);
   return (
     <>
       <MoiveSearchList movies={movieList.results} />
