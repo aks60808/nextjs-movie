@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "next/link";
 import Image from "next/image";
-
+import SearchMovieField from "./search-movie-field";
 const pages = [
   { name: "Trending", route: "trending" },
   { name: "Test1", route: "/" },
@@ -25,6 +25,12 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  function findEventsHandler(year, month) {
+    console.log("im using this");
+    const fullPath = `/events/${year}/${month}`;
+    router.push(fullPath);
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -50,9 +56,6 @@ function NavBar() {
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
             <Image src="/popcorn.png" alt="icon" width={22} height={22} />
-          </Box>
-          <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
-            <Image src="/weblogo.png" alt="icon" width={150} height={90} />
           </Box>
 
           <Box
@@ -104,10 +107,10 @@ function NavBar() {
           <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
             <Image src="/popcorn.png" alt="icon" width={22} height={22} />
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" }, flexGrow: 1, mr: 1 }}>
-            <Image src="/weblogo.png" alt="icon" width={150} height={90} />
-          </Box>
 
+          <Box sx={{ display: { xs: "flex", md: "none" }, flexGrow: 1, mr: 1 }}>
+            <SearchMovieField />
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link
@@ -123,6 +126,9 @@ function NavBar() {
                 </Button>
               </Link>
             ))}
+          </Box>
+          <Box sx={{ display: { xs: "none", md: "flex" }, flexGrow: 1, mr: 1 }}>
+            <SearchMovieField />
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

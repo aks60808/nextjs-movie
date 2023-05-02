@@ -10,12 +10,12 @@ import Link from "next/link";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function MediaList(props) {
-  const { medias } = props;
+  const { medias, flowDirection } = props;
   return (
     <ImageList
       spacing={8}
       sx={{
-        gridAutoFlow: "column",
+        gridAutoFlow: flowDirection || "column",
 
         columnGap: "8px",
       }}

@@ -8,7 +8,6 @@ function TrendingPage(props) {
     props.popular.prefetchedUpcomingMovieData
   );
   useEffect(() => {
-    // If searchCity is 2 letters or more
     if (clickPageNumButton) {
       fetch(`/api/popular-movie?page=${popularMoviePageNum}`)
         .then((res) => res.json())
@@ -21,7 +20,7 @@ function TrendingPage(props) {
 
   function clickPageNumHandler(action) {
     setclickPageNumButton(true);
-    console.log("im clicked");
+
     if (action === "next") {
       setPopularMoviePageNUm(popularMoviePageNum + 1);
     } else {
