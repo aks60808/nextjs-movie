@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 export default function App({ Component, pageProps }) {
   return (
     <>
-      {" "}
       <Head>
+        <title>MovieRack</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <main className={inter.className}>
