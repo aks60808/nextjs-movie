@@ -59,7 +59,6 @@ export default function MediaListWithButton(props) {
               style={{ color: "#c5c6c7" }}
               title={
                 <>
-                  {" "}
                   <Typography
                     variant="h5"
                     style={{

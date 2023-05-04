@@ -22,18 +22,10 @@ export default function PopularMovieBar(props) {
           </Grid>
         </Grid>
       </Box>
-      <Button>fasf</Button>
       <MediaListWithButton
         medias={data.results}
         onClickPageNum={data.onClickPageNum}
         pageNum={data.pageNum}
-      />
-      <p>hahh</p>
-      <Pagination
-        count={10}
-        sx={{
-          "& .MuiPagination-text": { color: "white" },
-        }}
       />
     </>
   );

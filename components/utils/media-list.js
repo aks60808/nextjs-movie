@@ -21,7 +21,11 @@ export default function MediaList(props) {
       }}
     >
       {medias.results.map((media) => (
-        <Link key={media.id} href="/about" style={{ textDecoration: "none" }}>
+        <Link
+          key={media.id}
+          href={`/movies/${media.id}-${media.title}`}
+          style={{ textDecoration: "none" }}
+        >
           <ImageListItem sx={{ maxWidth: 200 }}>
             <Image
               alt=""

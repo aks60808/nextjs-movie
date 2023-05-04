@@ -5,8 +5,9 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
 import Image from "next/image";
-import { Box } from "@mui/joy";
+import { Box, Typography } from "@mui/joy";
 import BrokenImageIcon from "@mui/icons-material/BrokenImage";
+
 export default function MoiveSearchList(props) {
   const { movies } = props;
 
@@ -23,22 +24,30 @@ export default function MoiveSearchList(props) {
               justifyContent: "center",
             }}
           >
-            {" "}
             {movie.poster_path ? (
               <Image
                 alt=""
                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                width={400}
-                height={600}
+                width={250}
+                height={375}
               />
             ) : (
-              <BrokenImageIcon sx={{ width: 400, height: 600 }} />
+              <BrokenImageIcon sx={{ width: 250, height: 375 }} />
             )}
           </Box>
 
           <ImageListItemBar
             title={movie.title}
-            subtitle={movie.vote_average.toFixed(1)}
+            subtitle={
+              <Typography
+                style={{
+                  fontStyle: "italic",
+                  color: "white",
+                }}
+              >
+                {movie.release_date}
+              </Typography>
+            }
             actionIcon={
               <IconButton
                 sx={{ color: "rgba(255, 255, 255, 0.54)" }}
