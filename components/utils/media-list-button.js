@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import BrokenImageIcon from "@mui/icons-material/BrokenImage";
 
 export default function MediaListWithButton(props) {
   const { medias, pageNum, onClickPageNum } = props;
@@ -42,12 +43,17 @@ export default function MediaListWithButton(props) {
           style={{ textDecoration: "none" }}
         >
           <ImageListItem sx={{ width: 200 }}>
-            <Image
-              alt=""
-              src={`https://image.tmdb.org/t/p/original${media.poster_path}`}
-              width={200}
-              height={300}
-            />
+            {media.poster_path ? (
+              <Image
+                alt=""
+                src={`https://image.tmdb.org/t/p/original${media.poster_path}`}
+                width={200}
+                height={300}
+              />
+            ) : (
+              <BrokenImageIcon sx={{ width: 200, height: 300 }} />
+            )}
+
             <Typography
               paragraph
               variant="h5"

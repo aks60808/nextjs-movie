@@ -4,19 +4,17 @@ import {
   CircularProgress,
   Container,
   Rating,
-  ImageList,
-  ImageListItem,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-
+import CreditList from "../../../components/movies/credit-list";
 export default function DetailMoviePage() {
   const router = useRouter();
 
   const [movie, setMovie] = useState();
+  const [credit, setCredit] = useState();
   const { movieID } = router.query;
-  console.log(movieID);
   useEffect(() => {
     if (movieID) {
       fetch(`/api/get-movie?query=${movieID}`)
@@ -27,7 +25,17 @@ export default function DetailMoviePage() {
     }
   }, [setMovie, movieID]);
 
-  if (!movie) {
+  useEffect(() => {
+    if (movieID) {
+      fetch(`/api/get-credit?query=${movieID}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setCredit(data);
+        });
+    }
+  }, [setCredit, movieID]);
+
+  if (!movie || !credit) {
     return (
       <>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -39,7 +47,7 @@ export default function DetailMoviePage() {
       </>
     );
   }
-  console.log(movie);
+  console.log(credit);
   return (
     <>
       <Box sx={{ display: "flex", m: 1 }}>
@@ -55,19 +63,25 @@ export default function DetailMoviePage() {
               {movie.original_title}
             </Typography>
 
-            <Container sx={{ display: "inline-flex" }}>
+            <Container
+              sx={{ display: "inline-flex", justifyContent: "space-evenly" }}
+            >
+              <Typography sx={{ display: "flex", alignItems: "center" }}>
+                Rating:
+              </Typography>
               <Rating
                 name="size-small"
                 defaultValue={5 * (movie.vote_average / 10)}
                 readOnly
                 precision={0.1}
-                sx={{ mb: 1 }}
+                sx={{ display: "flex", alignItems: "center" }}
               />
-              {movie.genres.map((genre) => (
-                <Typography key={genre.id} sx={{ textAlign: "center" }}>
-                  {genre.name} ,
-                </Typography>
-              ))}
+              <Typography sx={{ display: "flex", alignItems: "center", m: 1 }}>
+                Time: {movie.runtime} min
+              </Typography>
+              <Typography sx={{ display: "flex", alignItems: "center", m: 1 }}>
+                Release Date: {movie.release_date}
+              </Typography>
             </Container>
 
             <Typography>{movie.overview}</Typography>
@@ -97,8 +111,7 @@ export default function DetailMoviePage() {
               height={450}
             />
           </Box>
-          <Box sx={{}}>
-            {" "}
+          <Box>
             <Container sx={{ padding: 1, flexGrow: 1 }}>
               <Typography
                 variant="h3"
@@ -106,19 +119,29 @@ export default function DetailMoviePage() {
               >
                 {movie.original_title}
               </Typography>
-              <Container sx={{ display: "inline-flex" }}>
+              <Container
+                sx={{ display: "inline-flex", justifyContent: "space-evenly" }}
+              >
+                <Typography sx={{ display: "flex", alignItems: "center" }}>
+                  Rating:
+                </Typography>
                 <Rating
                   name="size-small"
                   defaultValue={5 * (movie.vote_average / 10)}
                   readOnly
                   precision={0.1}
-                  sx={{ mb: 1 }}
+                  sx={{ display: "flex", alignItems: "center" }}
                 />
-                {movie.genres.map((genre) => (
-                  <Typography key={genre.id} sx={{ textAlign: "center" }}>
-                    {genre.name} ,
-                  </Typography>
-                ))}
+                <Typography
+                  sx={{ display: "flex", alignItems: "center", m: 1 }}
+                >
+                  Time: {movie.runtime} min
+                </Typography>
+                <Typography
+                  sx={{ display: "flex", alignItems: "center", m: 1 }}
+                >
+                  Release Date: {movie.release_date}
+                </Typography>
               </Container>
               <Typography variant="h4" sx={{ fontSize: 25 }}>
                 Overview
@@ -132,68 +155,11 @@ export default function DetailMoviePage() {
         </Box>
       </Box>
       {/* cast */}
-      {/* <Box sx={{ display: "flex", m: 1 }}>
-        <ImageList
-          spacing={8}
-          sx={{
-            gridAutoFlow: flowDirection || "column",
 
-            columnGap: "8px",
-          }}
-        >
-          {movie.results.map((media) => (
-            <ImageListItem sx={{ maxWidth: 200 }}>
-              <Image
-                alt=""
-                src={`https://image.tmdb.org/t/p/original${media.poster_path}`}
-                width={200}
-                height={300}
-              />
-              <Typography
-                paragraph
-                variant="h5"
-                textAlign="center"
-                sx={{ m: 1, color: "yellowgreen" }}
-              >
-                <span>
-                  <StarsIcon className="icon" />
-                  {(5 * (media.vote_average / 10)).toFixed(1)}
-                </span>
-              </Typography>
-              <ImageListItemBar
-                style={{ color: "#c5c6c7" }}
-                title={
-                  <>
-                    {" "}
-                    <Typography
-                      variant="h5"
-                      style={{
-                        display: "block",
-                        whiteSpace: "pre-line",
-                      }}
-                      textAlign="center"
-                    >
-                      {media.title || media.name}
-                    </Typography>
-                    <Typography
-                      variant="h7"
-                      style={{
-                        display: "block",
-                        whiteSpace: "pre-line",
-                        fontStyle: "italic",
-                      }}
-                      textAlign="center"
-                    >
-                      {media.release_date}
-                    </Typography>
-                  </>
-                }
-                position="below"
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </Box> */}
+      <Box sx={{ display: "flex", m: 1, flexDirection: "column" }}>
+        <Typography variant="h3">The Cast</Typography>
+        <CreditList credit={credit.cast} />
+      </Box>
     </>
   );
 }
