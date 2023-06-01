@@ -65,7 +65,7 @@ export default function DetailMoviePage() {
               />
               {movie.genres.map((genre) => (
                 <Typography key={genre.id} sx={{ textAlign: "center" }}>
-                  {genre.name}
+                  {genre.name} ,
                 </Typography>
               ))}
             </Container>
@@ -75,24 +75,61 @@ export default function DetailMoviePage() {
           </Container>
         </Box>
 
-        {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-          <Image
-            alt=""
-            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-            width={150}
-            height={225}
-          />
-          <Container sx={{ padding: 1 }}>
-            <Typography
-              variant="h3"
-              sx={{ mt: 1, mb: 2, flexGrow: 1, fontSize: 30 }}
-            >
-              {movie.original_title}
-            </Typography>
-            <Typography>{movie.overview}</Typography>
-            <></>
-          </Container>
-        </Box> */}
+        <Box
+          sx={{
+            display: { xs: "flex", md: "none" },
+            flexGrow: 1,
+            flexDirection: "column",
+          }}
+        >
+          <Box
+            sx={{
+              m: 1,
+              display: "flex",
+
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              alt=""
+              src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+              width={300}
+              height={450}
+            />
+          </Box>
+          <Box sx={{}}>
+            {" "}
+            <Container sx={{ padding: 1, flexGrow: 1 }}>
+              <Typography
+                variant="h3"
+                sx={{ mt: 1, mb: 2, flexGrow: 1, fontSize: 30 }}
+              >
+                {movie.original_title}
+              </Typography>
+              <Container sx={{ display: "inline-flex" }}>
+                <Rating
+                  name="size-small"
+                  defaultValue={5 * (movie.vote_average / 10)}
+                  readOnly
+                  precision={0.1}
+                  sx={{ mb: 1 }}
+                />
+                {movie.genres.map((genre) => (
+                  <Typography key={genre.id} sx={{ textAlign: "center" }}>
+                    {genre.name} ,
+                  </Typography>
+                ))}
+              </Container>
+              <Typography variant="h4" sx={{ fontSize: 25 }}>
+                Overview
+              </Typography>
+              <Typography variant="p" sx={{ padding: 1, m: 1 }}>
+                {movie.overview}
+              </Typography>
+              <></>
+            </Container>
+          </Box>
+        </Box>
       </Box>
       {/* cast */}
       {/* <Box sx={{ display: "flex", m: 1 }}>
