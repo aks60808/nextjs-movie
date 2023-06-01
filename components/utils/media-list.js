@@ -23,7 +23,7 @@ export default function MediaList(props) {
       {medias.results.map((media) => (
         <Link
           key={media.id}
-          href={`/movies/${media.id}-${media.title}`}
+          href={`/movies/${media.id}`}
           style={{ textDecoration: "none" }}
         >
           <ImageListItem sx={{ maxWidth: 200 }}>
@@ -41,7 +41,7 @@ export default function MediaList(props) {
             >
               <span>
                 <StarsIcon className="icon" />
-                {media.vote_average.toFixed(1)}
+                {(5 * (media.vote_average / 10)).toFixed(1)}
               </span>
             </Typography>
             <ImageListItemBar
